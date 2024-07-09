@@ -82,17 +82,17 @@ function Grid({isPlayerX,squares,updateHistoryArr,updateScore}){
   </>);
 };
 
-const MoveList = ({moves,jumpToMove})=>{
+// const MoveList = ({moves,jumpToMove})=>{
 
-  return(<>
-    <ul>
-    {moves.map((move,index)=>{
-        const description = `Goto move ${index}`;
-        return <li key={index}><button onClick={()=>jumpToMove(index)}>{description}</button></li> 
-      })}
-    </ul>
-  </>);
-};
+//   return(<>
+//     <ul>
+//     {moves.map((move,index)=>{
+//         const description = `Goto move ${index}`;
+//         return <li key={index}><button onClick={()=>jumpToMove(index)}>{description}</button></li> 
+//       })}
+//     </ul>
+//   </>);
+// };
 
 function ScoreBar({scores}) {
   return (
@@ -161,6 +161,8 @@ export default function Game(){
       case 'O':
         setScores({...scores,'O':scores['O']+1});
         break;
+      default: console.log("default case runned.");
+        break;
     }
 
     setTimeout(()=>{
@@ -169,9 +171,9 @@ export default function Game(){
     },500);
   };
 
-  const jumpToMove = (index)=>{
-    setCurrentMove(prev => index);
-  };
+  // const jumpToMove = (index)=>{
+  //   setCurrentMove(prev => index);
+  // };
 
   const handleUndoRedo = (action)=>{
     switch (action) {
