@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 
@@ -150,25 +150,29 @@ export default function Game(){
       
   };
 
+  // const addTodo = useCallback(() => {
+  //   setTodos((t) => [...t, "New Todo"]);
+  // }, [todos]);
+
   const updateScore = (winner)=>{
 
-    if(winner === null) return;
-
-    switch (winner) {
-      case 'X':
-        setScores({...scores,'X':scores['X']+1});
-        break;
-      case 'O':
-        setScores({...scores,'O':scores['O']+1});
-        break;
-      default: console.log("default case runned.");
-        break;
-    }
-
-    setTimeout(()=>{
-      alert("start new match")
-      startNewMatch();
-    },500);
+      if(winner === null) return;
+  
+      switch (winner) {
+        case 'X':
+          setScores({...scores,'X':scores['X']+1});
+          break;
+        case 'O':
+          setScores({...scores,'O':scores['O']+1});
+          break;
+        default: console.log("default case runned.");
+          break;
+      }
+  
+      setTimeout(()=>{
+        alert("start new match")
+        startNewMatch();
+      },500);
   };
 
   // const jumpToMove = (index)=>{
@@ -221,6 +225,9 @@ export default function Game(){
         if(currentMove >= historyArr.length-1) return;
         setCurrentMove(currentMove+1);
         break;
+
+      default: console.log("inside default");
+      break;
     }
   }
 
