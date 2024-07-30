@@ -108,12 +108,13 @@ function ScoreBar({scores}) {
   )
 };
 
-function IconGroup({onIconClick}) {
+function IconGroup({onIconClick,onNewGame}) {
   // console.log("current move : ",currentMove);
   return (
     <>
         <div className="icon-group-container">
         <button className='icon-button' onClick={()=>onIconClick("undo")}><UndoIcon/></button>
+        <button className='newgame-btn' onClick={()=>onNewGame()}  style={{height:'60px',backgroundColor:'black',color:'white',width:'60px' ,display:'flex',flexDirection:'column', justifyContent:'center',alignItems:'center', padding:'8px',borderRadius:'50%'}}> <span>New</span><span>Game</span></button>
         <button className='icon-button' onClick={()=>onIconClick("redo")}><RedoIcon/></button>
         </div>
     </>
@@ -153,10 +154,11 @@ export default function Game(){
   // const addTodo = useCallback(() => {
   //   setTodos((t) => [...t, "New Todo"]);
   // }, [todos]);
-
+let Winner = null;
   const updateScore = (winner)=>{
 
-      if(winner === null) return;
+    Winner = winner;
+      if(winner === null) return ;
   
       switch (winner) {
         case 'X':
@@ -231,12 +233,27 @@ export default function Game(){
     }
   }
 
-  return(<>
+  useEffect(()=>{
+    if(currentMove >= 9 && Winner === null){
+      // console.log("move: ",currentMove);
+        setTimeout(()=>{
+          alert("It's a Draw... start new match")
+          startNewMatch();
+        },500);
+    }
+},[currentMove]);
+
+function handleNewGame(){
+  setScores({...scores,'X':0,'O':0});
+  startNewMatch();
+}
+
+return(<>
     <div className="cover-container">
     <ScoreBar scores={scores}/>
     <Grid isPlayerX={isPlayerX} squares = {latestArr} updateHistoryArr = {updateHistoryArr} updateScore = {updateScore}/>
     {/* <MoveList moves = {historyArr} jumpToMove={jumpToMove}/> */}
-    <IconGroup  onIconClick={handleUndoRedo}/>
+    <IconGroup  onIconClick={handleUndoRedo} onNewGame={handleNewGame} />
     </div>
     <div className='footer'><div className='content'>
     TIC-TAC-TOE  by - Kunal Saini</div></div>

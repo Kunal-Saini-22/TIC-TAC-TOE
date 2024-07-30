@@ -2,6 +2,17 @@
     border: 2px solid;
 }
 
+.newgame-btn{
+  transition: transform 0.5s ease-in-out;
+}
+
+.newgame-btn:hover{
+  /* background: rgb(41, 41, 41) !important; */
+  /* color: greenyellow !important; */
+  /* border: 2px solid greenyellow !important; */
+  transform: scale(1.15);
+}
+
 .box{
     height: 80px;
     width: 80px;
@@ -130,6 +141,9 @@ padding: 4px 8px;
 
 @media screen and (max-width:780px) {
 
+  .footer{
+    display: none;
+  }
     .score-bar-outer-container {
         /* background-color: red; */
         width: 100%;
@@ -153,7 +167,7 @@ padding: 4px 8px;
    }
 
    .icon-group-container{
-    width: 45%;
+    width: 65%;
     margin:0px;
     margin-bottom: 2rem;
    }
