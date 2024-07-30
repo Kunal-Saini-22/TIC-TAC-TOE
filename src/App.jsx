@@ -255,7 +255,7 @@ return(<>
     {/* <MoveList moves = {historyArr} jumpToMove={jumpToMove}/> */}
     <IconGroup  onIconClick={handleUndoRedo} onNewGame={handleNewGame} />
     </div>
-    <div className='footer'><div className='content'>
-    TIC-TAC-TOE  by - Kunal Saini</div></div>
+    {/* <div className='footer'><div className='content'>
+    TIC-TAC-TOE  by - Kunal Saini</div></div> */}
   </>);
 }
